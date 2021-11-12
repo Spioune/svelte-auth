@@ -1,0 +1,21 @@
+{
+  "name": "svelte-auth",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "svelte-kit dev",
+    "build": "svelte-kit build",
+    "preview": "svelte-kit preview"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-netlify": "^1.0.0-next.35",
+    "@sveltejs/kit": "next",
+    "svelte": "^3.42.6"
+  },
+  "type": "module",
+  "dependencies": {
+    "@hapi/iron": "^6.0.0",
+    "cookie": "^0.4.1",
+    "dotenv": "^10.0.0",
+    "jose": "^4.3.3"
+  }
+}
