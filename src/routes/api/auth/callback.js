@@ -1,15 +1,6 @@
-import dotenv from 'dotenv'
-dotenv.config()
+import { variables } from '$lib/variables'
 
-const {
-	AUTH0_SECRET,
-	AUTH0_BASE_URL,
-	AUTH0_ISSUER_BASE_URL,
-	AUTH0_CLIENT_ID,
-	AUTH0_CLIENT_SECRET,
-	AUTH0_AUDIENCE,
-	AUTH0_COOKIE_NAME,
-} = process.env
+const { AUTH0_BASE_URL, AUTH0_ISSUER_BASE_URL, AUTH0_CLIENT_ID, AUTH0_CLIENT_SECRET, AUTH0_COOKIE_NAME } = variables
 
 import Iron from '@hapi/iron'
 import * as jose from 'jose'
@@ -27,7 +18,7 @@ export async function get({ headers, method, host, path, query, body, params }) 
 			client_id: AUTH0_CLIENT_ID,
 			client_secret: AUTH0_CLIENT_SECRET,
 			code: query.get('code'),
-			redirect_uri: `${process.env.URL || AUTH0_BASE_URL}/api/auth/callback`,
+			redirect_uri: `${AUTH0_BASE_URL}/api/auth/callback`,
 		}).toString(),
 	})
 
@@ -47,8 +38,6 @@ export async function get({ headers, method, host, path, query, body, params }) 
 		expires_in,
 		token_type,
 	}
-
-	console.log(cookie)
 
 	const sealedCookie = await Iron.seal(cookie, AUTH0_CLIENT_SECRET, Iron.defaults)
 

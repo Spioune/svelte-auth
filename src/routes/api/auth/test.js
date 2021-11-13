@@ -1,8 +1,10 @@
-import { variables } from '$lib/variables.js'
+import { variables } from '$lib/variables'
 
-export async function get({ headers, method, host, path, query, body, params }) {
+const { AUTH0_BASE_URL } = variables
+
+export async function get(request) {
 	return {
 		status: 200,
-		body: JSON.stringify(variables),
+		body: AUTH0_BASE_URL,
 	}
 }
