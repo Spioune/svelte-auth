@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 export async function get({ headers, method, host, path, query, body, params }) {
 	return {
 		status: 200,
